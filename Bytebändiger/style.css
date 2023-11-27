@@ -1,6 +1,9 @@
 body {
     background-color: #46178f;
 }
+main{
+    margin-top:15%;
+}
 
 #leaderboard {
     max-width: 40%;
@@ -32,7 +35,6 @@ body {
         margin-left: 25%;
     }
 
-    .button {}
 }
 
 .button {

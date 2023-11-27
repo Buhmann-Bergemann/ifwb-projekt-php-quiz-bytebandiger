@@ -45,8 +45,8 @@
 
         </div>
         <div class="button">
-            <button>Spielen</button>
-            <button>Admin Login</button>
+            <a href="./play/index.php"><button>Spielen</button></a>
+           <a href="./Login/login.php"><button>Admin Login</button></a>
         </div>
     </main>
 </body>
