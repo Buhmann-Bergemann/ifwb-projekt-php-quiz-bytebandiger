@@ -11,7 +11,6 @@
 
 <body>
     <main>
-
         <div class="background-div"></div>
         <div id="leaderboard">
             <h1>Ranking</h1>
@@ -46,7 +45,7 @@
         </div>
         <div class="button">
             <a href="./play/index.php"><button>Spielen</button></a>
-           <a href="./Login/login.php"><button>Admin Login</button></a>
+            <a href="./Login/login.php"><button>Admin Login</button></a>
         </div>
     </main>
 </body>
