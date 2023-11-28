@@ -1,7 +1,20 @@
-frage1;Antwort1
-frage2;Antwort2
-frage3;Antwort3
-frage4;Antwort4
-frage5;Antwort5
-frage6;Antwort6
-frage7;Antwort7
+Was ist der Hauptzweck eines Prozessors in einem Computer?;Speicherung von Daten;Berechnung von Daten;Übertragung von Daten;Darstellung von Daten;2
+Welche Art von Speicher ist dafür bekannt kurzfristig Daten zu speichern und schnell darauf zuzugreifen?;Festplatte;RAM;SSD;USB-Stick;2
+Was ist ein Algorithmus?;Ein physikalisches Bauteil in Computern;Eine mathematische Anweisungsserie zur Problemlösung;Ein Bildschirmtyp in Smartphones;Ein spezieller Netzwerkanschluss;2
+Welche Drahtlostechnologie wird für die Übertragung von Daten über kurze Distanzen verwendet?;Bluetooth;Wi-Fi;LTE;NFC;1
+Welche der folgenden Programmiersprachen wird häufig für die Webentwicklung verwendet?;Python;Java;HTML;C++;3
+Welche Einheit misst die Geschwindigkeit von Datenübertragungen?;Megabyte;Megahertz;Megapixel;Megabit pro Sekunde;4
+Was ist ein 404-Fehler in Bezug auf das Internet?;Ein Fehler in der Netzwerkverbindung;Ein Fehler beim Laden von Bildern;Eine nicht gefundene Webseite;Ein Fehler beim Abspielen von Videos;3
+Welche Art von Software schützt einen Computer vor schädlicher Software?;Betriebssystem;Firewall;Antivirus;Browser;3
+Was bedeutet der Begriff "IoT"?;Input-Output-Transfer;Internet of Things;Intranet over Transmission;Integrated Online Technology;3
+Was ist der Hauptzweck eines GPU (Graphics Processing Unit)?;Dateispeicherung;Grafikverarbeitung;Datentransfer;Drahtlose Kommunikation;2
+Welcher Typ von Kamera wird oft in Überwachungssystemen eingesetzt?;Spiegelreflexkamera;Digitalkamera;Webcam;Actionkamera;3
+Welche Art von Display-Technologie wird in den meisten modernen Fernsehern verwendet?;LCD;CRT;OLED;Plasma;1
+Welches Unternehmen ist für die Entwicklung des iPhone verantwortlich?;Samsung;Apple;Google;Microsoft;2
+Welche Art von Dateiformat wird häufig für das Teilen von Dokumenten verwendet und ist plattformübergreifend?;JPEG;PDF;MP3;TXT;2
+Was ist ein Botnet?;Ein neues Betriebssystem;Ein Roboterarm für den Computer;Eine Gruppe von vernetzten Computern die von Malware kontrolliert werden;Ein schneller Internetanschluss;3
+Welche der folgenden Technologien ermöglicht drahtlose Kommunikation zwischen Geräten in unmittelbarer Nähe?;NFC;GPS;Bluetooth;Wi-Fi;1
+Welche der folgenden Kabeltypen wird häufig für die Übertragung von Audio- und Videosignalen verwendet?;USB;HDMI;Ethernet;VGA;2
+Was ist ein QR-Code?;Ein neues Betriebssystem;Ein spezielles Kameramodell;Ein maschinenlesbarer Code für die schnelle Erfassung von Informationen;Ein Fortschrittsbalken beim Download;3
+Was ist Augmented Reality (AR)?;Eine virtuelle Realität ohne echte Welt;Eine erweiterte Version von Virtual Reality;Die Kombination von virtuellen Elementen mit der realen Welt;Ein fortschrittliches Audioaufnahmegerät;3
+Welche Internetverbindungstechnologie bietet die schnellste Geschwindigkeit?;DSL;4G LTE;Glasfaser;Kabelinternet;3

@@ -1,0 +1,39 @@
+div{    
+    width: clamp(100px,100%,5000px);
+}
+.questions{
+    position:relative;
+    height: 30px;
+    margin: 2.5px;
+    font-size: 14px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    border: 2.5px solid;
+    border-radius: 8px;
+    
+}
+Form > input:nth-child(10n+2){
+    background-color: #b9e870;
+}
+h1{
+    color: white;
+    width: clamp(100%,10%,100%);
+    text-align: center;
+}
+body > {
+    background-color: #46178f;
+    padding-left: 150px;
+}
+.button{
+    height: 30px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #3a156d;
+    border: none;
+    border-radius: 15px;
+    margin: 2.5px;
+
+}

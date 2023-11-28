@@ -30,9 +30,6 @@
                 header("Location:./login.php");
             }
         }
-        $file = fopen("fragen.csv","r");
-        print_r(fgetcsv($file));
-        fclose($file);
 
     }
 ?>
@@ -42,11 +39,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="adminstyle.css">
 </head>
 <body>
 <h1>Admin Dashboard</h1>
-<button>Fragen Bearbeiten</button>
-<button>Fragen Löschen</button>
-<button>Bestenliste Zurücksetzen</button>
+<?php 
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+echo "<html><body><div><Form>";
+$f = fopen("fragen.csv", "r");
+while (($line = fgetcsv($f)) !== false) {
+        echo "<label>";
+        echo "</Label>\n";         
+                $values = explode(";", $line[0]);
+                echo "<input class='questions' value='".htmlspecialchars($values[0])."'>";
+                echo "<input class='questions' value='".htmlspecialchars($values[5])."'>";
+                echo "<input class='questions' value='".htmlspecialchars($values[1])."'>";
+                echo "<input class='questions' value='".htmlspecialchars($values[2])."'>";
+                echo "<input class='questions' value='".htmlspecialchars($values[3])."'>";
+                echo "<input class='questions' value='".htmlspecialchars($values[4])."'>";
+                echo "<input value=Bearbeiten type=Submit class='button'>";
+                echo "<input value=Löschen type=Submit class='button'>"."<br>";
+}
+fclose($f);
+echo "\n</html></body></div></Form>";
+}
+?>
+
 </body>
 </html>
