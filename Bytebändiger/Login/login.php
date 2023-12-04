@@ -1,3 +1,14 @@
+<?php
+session_start();
+        if ($_SERVER['REQUEST_METHOD'] ==='POST') {
+            $_SESSION['username'] = $_POST['username'];
+            $_SESSION['password'] = $_POST['password'];
+            header("Location:./adminSucessLogin.php");
+            
+        } 
+    
+
+?>
 <!DOCTYPE html>
 <html lang="de">
 
@@ -12,7 +23,7 @@
 
 <body>
     <div class="flex wrapper">
-        <form action="./adminSucessLogin.php" method="post">
+        <form action="" method="post">
             <img class="flex" src="../img/kahoot_logo.png" alt="kahoot_Logo">
             <h1>Login </h1>
             <div class="input-box">

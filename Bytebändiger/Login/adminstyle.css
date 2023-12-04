@@ -17,7 +17,7 @@
 
 }
 
-Form>input:nth-child(10n+2) {
+.questions:nth-child(8n+2) {
     background-color: #b9e870;
 }
 
