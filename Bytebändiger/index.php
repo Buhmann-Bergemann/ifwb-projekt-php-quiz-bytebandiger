@@ -5,43 +5,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
 
 </head>
 
 <body>
     <main>
+
         <div class="background-div"></div>
         <div id="leaderboard">
-            <h1>Ranking</h1>
-            <table>
-                <tr>
-                    <td class="number">1</td>
-                    <td class="name"></td>
-                    <td class="points"></td>
-                </tr>
-                <tr>
-                    <td class="number">2</td>
-                    <td class="name"></td>
-                    <td class="points"></td>
-                </tr>
-                <tr>
-                    <td class="number">3</td>
-                    <td class="name"></td>
-                    <td class="points"></td>
-                </tr>
-                <tr>
-                    <td class="number">4</td>
-                    <td class="name"></td>
-                    <td class="points"></td>
-                </tr>
-                <tr>
-                    <td class="number">5</td>
-                    <td class="name"></td>
-                    <td class="points"></td>
-                </tr>
-            </table>
+            <?php
+            $file = fopen("bestenliste.csv", "r");
+            if ($file) {
+                $data = [];
 
+                while (($row = fgetcsv($file, 1000, ";")) !== false) {
+                    $data[] = $row;
+                }
+
+                usort($data, function ($a, $b) {
+                    $percentageA = floatval($a[2]); // Konvertiere die Prozentzahl zu einer Gleitkommazahl
+                    $percentageB = floatval($b[2]);
+
+                    return $percentageB - $percentageA;
+                });
+
+                echo "<table>";
+                echo "<tr><th>Platz</th><th>Punkte</th><th>Prozente erreicht</th></tr>";
+
+                // Begrenze die Anzeige auf maximal 10 Einträge
+                $counter = 0;
+                $platz = 1;
+
+                foreach ($data as $row) {
+                    echo "<tr>";
+                    echo "<td>{$platz}</td>";
+                    echo "<td>{$row[1]}</td>";
+                    echo "<td>{$row[2]}</td>";
+                    echo "</tr>";
+
+                    $counter++;
+                    $platz++;
+
+                    if ($counter >= 10) {
+                        break;
+                    }
+                }
+
+                echo "</table>";
+                fclose($file);
+            } else {
+                echo "Die Datei konnte nicht geöffnet werden.";
+            }
+            ?>
         </div>
         <div class="button">
             <a href="./play/index.php"><button>Spielen</button></a>

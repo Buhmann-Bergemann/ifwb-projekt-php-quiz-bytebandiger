@@ -1,8 +1,9 @@
 body {
     background-color: #46178f;
 }
-main{
-    margin-top:15%;
+
+main {
+    margin-top: 15%;
 }
 
 #leaderboard {
@@ -20,14 +21,16 @@ main{
 
 #leaderboard tr {
     text-align: center;
+    width: 33%;
+
 }
 
 .background-div {
-    background-image: url('./img/kahoot_Logo.png');
+    background-image: url('./img/kahoot_logo.png');
     background-repeat: no-repeat;
     background-size: contain;
     height: 150px;
-    margin-left: 43%
+    margin-left: 43%;
 }
 
 @media only screen and (max-width: 768px) {
