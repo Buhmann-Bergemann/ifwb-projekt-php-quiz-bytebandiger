@@ -1,44 +1,63 @@
-.flex {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: clamp(100px, 100%, 4920px);
-}
-
-.questions {
-    position: relative;
-    height: 30px;
-    margin: 2.5px;
-    font-size: 14px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bold;
-    border: 2.5px solid;
-    border-radius: 8px;
-
-}
-
-.questions:nth-child(8n+2) {
-    background-color: #b9e870;
-}
-
-.headertext {
+.wrapper {
+    background-color: purple;
     color: white;
+    border-radius: 10px;
+    width: 90%;
 }
 
 body {
-    background-color: #46178f;
+
+    background: url('../img/kahoot.jpg') no-repeat;
+    background-color: #333;
+    background-size: cover;
+    background-position: center;
 }
 
-.button {
-    height: 30px;
-    font-size: 24px;
-    text-align: center;
-    cursor: pointer;
-    outline: none;
-    color: #fff;
-    background-color: #3a156d;
-    border: none;
-    border-radius: 15px;
-    margin: 2.5px;
 
+.wrapper {
+    background: transparent;
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    border: 2px solid rgba(255, 255, 255, .2);
+}
+
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center;
+    color: black;
+}
+
+
+
+.input-box {
+
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+}
+
+input::placeholder {
+    color: White;
+}
+
+.wrapper .btn {
+    width: 10%;
+    height: 24px;
+    background-color: violet;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 10px;
 }
