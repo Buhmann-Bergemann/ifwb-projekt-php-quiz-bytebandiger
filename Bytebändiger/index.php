@@ -7,13 +7,14 @@
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
 
+
 </head>
 
 <body>
     <main>
 
         <div class="background-div"></div>
-        <div id="leaderboard">
+        <div class="wrapper leaderboard">
             <?php
             $file = fopen("bestenliste.csv", "r");
             if ($file) {
@@ -31,7 +32,7 @@
                 });
 
                 echo "<table>";
-                echo "<tr><th>Platz</th><th>Punkte</th><th>Prozente erreicht</th></tr>";
+                echo "<tr><th>Platz  </th><th>Punkte  </th><th>Prozente erreicht  </th></tr>";
 
                 // Begrenze die Anzeige auf maximal 10 Einträge
                 $counter = 0;

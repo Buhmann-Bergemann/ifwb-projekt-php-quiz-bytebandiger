@@ -1,29 +1,25 @@
 body {
-    background-color: #46178f;
+    background-image: url('./img/kahoot.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 main {
     margin-top: 15%;
 }
 
-#leaderboard {
-    max-width: 40%;
+.leaderboard {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 0 10px blueviolet;
-    margin-left: 30%;
-
-}
-
-#leaderboard h1 {
     text-align: center;
-}
-
-#leaderboard tr {
-    text-align: center;
-    width: 33%;
+    width: 250px;
+    margin: auto;
 
 }
+
+
+
 
 .background-div {
     background-image: url('./img/kahoot_logo.png');
@@ -65,4 +61,25 @@ button {
 button:hover {
     background-color: #46178f;
     color: #fff;
+}
+
+
+
+
+
+.wrapper {
+    background-color: purple;
+    color: white;
+    border-radius: 10px;
+}
+
+
+.wrapper {
+    background: transparent;
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    border: 2px solid rgba(255, 255, 255, .2);
 }
