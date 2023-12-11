@@ -16,7 +16,7 @@
         <div class="background-div"></div>
         <div class="wrapper leaderboard">
             <?php
-            $file = fopen("bestenliste.csv", "r");
+            $file = fopen("./csv/bestenliste.csv", "r");
             if ($file) {
                 $data = [];
 
@@ -31,8 +31,9 @@
                     return $percentageB - $percentageA;
                 });
 
+                echo "<h2 class='headline'>Rangliste</h2>";
                 echo "<table>";
-                echo "<tr><th>Platz  </th><th>Punkte  </th><th>Prozente erreicht  </th></tr>";
+                echo "<tr><th style='padding-right: 30px;'>Platz  </th><th>Punkte  </th><th>Prozente erreicht  </th></tr>";
 
                 // Begrenze die Anzeige auf maximal 10 Einträge
                 $counter = 0;
@@ -48,7 +49,7 @@
                     $counter++;
                     $platz++;
 
-                    if ($counter >= 10) {
+                    if ($counter >= 15) {
                         break;
                     }
                 }
@@ -65,6 +66,7 @@
             <a href="./Login/login.php"><button>Admin Login</button></a>
         </div>
     </main>
+    
 </body>
 
 </html>

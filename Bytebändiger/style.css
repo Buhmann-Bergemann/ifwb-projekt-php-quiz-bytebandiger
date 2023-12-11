@@ -2,17 +2,17 @@ body {
     background-image: url('./img/kahoot.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+
 }
 
 main {
-    margin-top: 15%;
+    margin-top: 10%;
 }
 
 .leaderboard {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 0 10px blueviolet;
-    text-align: center;
     width: 250px;
     margin: auto;
 
@@ -26,7 +26,7 @@ main {
     background-repeat: no-repeat;
     background-size: contain;
     height: 150px;
-    margin-left: 43%;
+    margin-left: 39%;
 }
 
 @media only screen and (max-width: 768px) {
@@ -64,7 +64,11 @@ button:hover {
 }
 
 
-
+.headline{
+    padding:0px;
+    margin: 0px;
+    text-align: center;
+}
 
 
 .wrapper {

@@ -1,4 +1,7 @@
 body {
+    background-image: url('../img/kahoot.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
@@ -8,28 +11,33 @@ body {
     height: 100vh;
 }
 
-#quiz-container {
+.quiz-container {
     width: 60%;
     text-align: center;
+    padding: 10px;
 }
 
-.question {
+.answer {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.questions-row {
+.answer-row {
     display: flex;
     justify-content: space-around;
 }
 
-.question-box {
+.answer-box {
     width: 45%;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+}
+.answer-box :hover{
+    color: black;
+    cursor: pointer;
 }
 
 .timer {
@@ -49,4 +57,30 @@ td {
 
 th {
     background-color: #f2f2f2;
+}
+
+.question{
+    width: 98;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    background-color: red;
+}
+
+.wrapper {
+    background-color: purple;
+    color: white;
+    border-radius: 10px;
+}
+
+
+.wrapper {
+    background: transparent;
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    border: 2px solid rgba(255, 255, 255, .2);
 }

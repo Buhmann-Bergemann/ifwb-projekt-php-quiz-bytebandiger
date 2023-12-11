@@ -67,7 +67,7 @@ if (isset($_POST['add'])) {
     $newAnswer4 = $_POST['newAnswer4'];
     $correctAnswer = $_POST['newAnswer5'];
 
-    $newQuestionData = "$newQuestion;$newAnswer1;$newAnswer2;$newAnswer3;$newAnswer4;$correctAnswer\n";
+    $newQuestionData = "\n$newQuestion;$newAnswer1;$newAnswer2;$newAnswer3;$newAnswer4;$correctAnswer";
 
     $file = fopen("./fragen.csv", "a");
     fwrite($file, $newQuestionData);
@@ -75,7 +75,7 @@ if (isset($_POST['add'])) {
 }
 
 if (isset($_POST['resetScoreboard'])) {
-    $file = fopen("bestenliste.csv", "w");
+    $file = fopen("../csv/bestenliste.csv", "w");
 
     // Schreibe nichts in die Datei, um sie zu leeren
     fwrite($file, "");
