@@ -23,7 +23,7 @@ if (isset($_POST['edit'])) {
 function deleteRow($questionr)
 {
     // Code zum Löschen der Zeile, den du bereits implementiert hast
-    $lines = file("fragen.csv", FILE_IGNORE_NEW_LINES);
+    $lines = file("../csv/fragen.csv", FILE_IGNORE_NEW_LINES);
 
     foreach ($lines as $key => $line) {
         $values = explode(';', $line);
@@ -35,14 +35,14 @@ function deleteRow($questionr)
         }
     }
 
-    file_put_contents("fragen.csv", implode("\n", $lines));
+    file_put_contents("../csv/fragen.csv", implode("\n", $lines));
 }
 
 
 function editRow($questionr, $answer1, $answer2, $answer3, $answer4, $answer5)
 {
     // Code zum Bearbeiten der Zeile
-    $lines = file("fragen.csv", FILE_IGNORE_NEW_LINES);
+    $lines = file("../csv/fragen.csv", FILE_IGNORE_NEW_LINES);
 
     foreach ($lines as $key => $line) {
         $values = explode(';', $line);
@@ -55,7 +55,7 @@ function editRow($questionr, $answer1, $answer2, $answer3, $answer4, $answer5)
         }
     }
 
-    file_put_contents("./fragen.csv", implode("\n", $lines));
+    file_put_contents("../csv/fragen.csv", implode("\n", $lines));
 }
 
 /* BUGG BERGE ABI FRAGEN NACHDEM MAN WAS LÖSCHT KEINE NEW LINE*/
@@ -69,7 +69,7 @@ if (isset($_POST['add'])) {
 
     $newQuestionData = "\n$newQuestion;$newAnswer1;$newAnswer2;$newAnswer3;$newAnswer4;$correctAnswer";
 
-    $file = fopen("./fragen.csv", "a");
+    $file = fopen("../csv/fragen.csv", "a");
     fwrite($file, $newQuestionData);
     fclose($file);
 }

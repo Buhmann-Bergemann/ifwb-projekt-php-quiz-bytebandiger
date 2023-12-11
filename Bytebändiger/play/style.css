@@ -92,3 +92,15 @@ th {
     box-shadow: 0 0 10px rgba(0, 0, 0, .2);
     border: 2px solid rgba(255, 255, 255, .2);
 }
+
+@media(max-width:768px) {
+    body {
+        background-image: url('../img/mediaquerie.jpg');
+    }
+
+    .answer-row {
+        flex-direction: column;
+        width: 500px;
+        margin-left: -8%;
+    }
+}

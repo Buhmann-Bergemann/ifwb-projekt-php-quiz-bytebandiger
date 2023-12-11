@@ -6,7 +6,7 @@ session_start();
 
 // Check if the form is submitted
 include './functions.php';
-$handle = fopen("./logindata.csv", "r");
+$handle = fopen("../csv/logindata.csv", "r");
 
 while (($line = fgets($handle)) !== FALSE) {
     $data = explode(';', $line);
@@ -73,7 +73,7 @@ if (!$success) {
 
         <h2>Fragen Bearbeiten</h2>
         <?php
-        $f = fopen("./fragen.csv", "r");
+        $f = fopen("../csv/fragen.csv", "r");
         while (($line = fgetcsv($f)) !== false) {
             echo "<form method='post' action='adminSucessLogin.php'>"; // Formular für jedes Datenelement
 
