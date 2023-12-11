@@ -25,29 +25,28 @@
                 }
 
                 usort($data, function ($a, $b) {
-                    $percentageA = floatval($a[2]); // Konvertiere die Prozentzahl zu einer Gleitkommazahl
-                    $percentageB = floatval($b[2]);
+                    $percentageA = floatval($a[1]); // Konvertiere die Prozentzahl zu einer Gleitkommazahl
+                    $percentageB = floatval($b[1]);
 
                     return $percentageB - $percentageA;
                 });
 
                 echo "<h2 class='headline'>Rangliste</h2>";
                 echo "<table>";
-                echo "<tr><th style='padding-right: 30px;'>Platz  </th><th>Punkte  </th><th>Prozente erreicht  </th></tr>";
+                echo "<tr><th style='padding-right: 30px;'>Platz</th><th>Punkte</th><th>Prozente erreicht</th></tr>";
 
-                // Begrenze die Anzeige auf maximal 10 Einträge
                 $counter = 0;
                 $platz = 1;
 
                 foreach ($data as $row) {
-                    $percentage = floatval($row[2]);
+                    $percentage = floatval($row[1]);
 
                     // Prüfe, ob die Prozentzahl größer als 80 ist
                     if ($percentage > 80) {
                         echo "<tr>";
                         echo "<td>{$platz}</td>";
+                        echo "<td>{$row[0]}</td>";
                         echo "<td>{$row[1]}</td>";
-                        echo "<td>{$row[2]}</td>";
                         echo "</tr>";
 
                         $counter++;

@@ -9,6 +9,13 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.questionCounter {
+    font-weight: bold;
+    font-size: large;
+    color: black;
 }
 
 .quiz-container {
@@ -35,7 +42,8 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
-.answer-box :hover{
+
+.answer-box :hover {
     color: black;
     cursor: pointer;
 }
@@ -59,7 +67,7 @@ th {
     background-color: #f2f2f2;
 }
 
-.question{
+.question {
     width: 98;
     padding: 20px;
     border-radius: 8px;

@@ -13,7 +13,7 @@
 
 
     <div class="quiz-container wrapper">
-        <div class="questionCounter"></div>
+        <div class="questionCounter">1/X Fragen</div>
 
         <div class="timer">Timer: 1500s</div>
 
@@ -43,6 +43,8 @@
         let timerInterval;
         let selectedAnswer;
         let currentQuestionIndex = 0; // Index der aktuellen Frage
+        let correctAnswersCount = 0;
+        let totalQuestions = 0;
 
         function startTimer() {
             timerInterval = setInterval(updateTimer, 1000);
@@ -108,6 +110,7 @@
                     // Jetzt vergleiche die ausgewählte Antwort mit der richtigen Antwort.
                     if (selectedAnswer === correctAnswer) {
                         console.log("Richtig!");
+                        correctAnswersCount++;
                     } else {
                         console.log("Falsch!");
                     }
@@ -144,11 +147,49 @@
 
                         // Aktualisiere den Fragezähler
                         updateQuestionCounter();
+                        if (currentQuestionIndex === totalQuestions - 1) {
+                            // Alle Fragen wurden beantwortet
+                            const correctPercentage = (correctAnswersCount / totalQuestions) * 100;
+                            if (correctPercentage > 80) {
+                                const playerName = prompt("Herzlichen Glückwunsch! Du hast mehr als 80% richtig beantwortet. Bitte gib deinen Namen ein:");
+                                // Formatieren des Eintrags für die CSV-Datei
+                                const csvEntry = `${playerData.length + 1};${playerName};${correctPercentage.toFixed(2)}%`;
+
+                                // Füge den Eintrag zur CSV-Datei hinzu
+                                fetch('../csv/bestenliste.csv', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'text/plain',
+                                        },
+                                        body: csvEntry,
+                                    })
+                                    .then(response => response.text())
+                                    .then(data => {
+                                        console.log('Eintrag wurde erfolgreich hinzugefügt:', data);
+                                        playerData.push({
+                                            name: playerName,
+                                            percentage: correctPercentage
+                                        });
+                                        alert(`Danke, ${playerName}! Spiel beendet. Du hast ${correctPercentage}% der Fragen richtig beantwortet.`);
+                                    })
+                                    .catch(error => console.error('Fehler beim Hinzufügen des Eintrags:', error));
+
+
+                            } else {
+                                alert("Spiel beendet! Leider hast du weniger als 80% richtig beantwortet.");
+                            }
+                        }
+
+
                     } else {
                         // Keine weiteren Fragen vorhanden, hier kannst du die Endbildschirm-Logik implementieren
                         alert("Spiel beendet!");
                     }
                 })
+
+
+
+
                 .catch(error => console.error('Fehler beim Laden der CSV-Datei:', error));
         }
 

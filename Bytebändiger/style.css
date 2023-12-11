@@ -2,12 +2,15 @@ body {
     background-image: url('./img/kahoot.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
 
 }
 
 main {
     margin-top: 10%;
 }
+
 
 .leaderboard {
     background-color: white;
@@ -64,8 +67,8 @@ button:hover {
 }
 
 
-.headline{
-    padding:0px;
+.headline {
+    padding: 0px;
     margin: 0px;
     text-align: center;
 }
