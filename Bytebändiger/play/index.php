@@ -13,25 +13,25 @@
 
 
     <div class="quiz-container wrapper">
-    <div class="counter">Frage: <span id="questionCounter">0</span>/<span id="totalQuestions">0</span></div>
+        <div class="questionCounter"></div>
 
         <div class="timer">Timer: 1500s</div>
 
         <div class="question">antwort box</div>
 
         <div class="answer-row">
-            <div class="answer-box" style="background-color: #FF5733;" onclick="checkAnswer(1)">
+            <div class="answer-box" style="background-color: #FF5733;" onclick="checkAnswer(1); loadNextQuestion()">
                 <div class="answer"></div>
             </div>
-            <div class="answer-box" style="background-color: #33FF57;" onclick="checkAnswer(2)">
+            <div class="answer-box" style="background-color: #33FF57;" onclick="checkAnswer(2);loadNextQuestion()">
                 <div class="answer"></div>
             </div>
         </div>
         <div class="answer-row">
-            <div class="answer-box" style="background-color: #5733FF;" onclick="checkAnswer(3)">
+            <div class="answer-box" style="background-color: #5733FF;" onclick="checkAnswer(3);loadNextQuestion()">
                 <div class="answer"></div>
             </div>
-            <div class="answer-box" style="background-color: #33FFFF;" onclick="checkAnswer(4)">
+            <div class="answer-box" style="background-color: #33FFFF;" onclick="checkAnswer(4);loadNextQuestion()">
                 <div class="answer"></div>
             </div>
         </div>
@@ -43,7 +43,6 @@
         let timerInterval;
         let selectedAnswer;
         let currentQuestionIndex = 0; // Index der aktuellen Frage
-        let totalQuestions;
 
         function startTimer() {
             timerInterval = setInterval(updateTimer, 1000);
@@ -59,14 +58,13 @@
                 // Hier kannst du die Logik für die abgelaufene Zeit implementieren
             }
         }
-        //Hierk annst du den Timer für jede Frage starte
         startTimer();
+        updateQuestionCounter();
 
 
 
 
-        // Lese die CSV-Datei ein und fülle die Daten in die HTML-Elemente.
-        fetch('../login/fragen.csv')
+        fetch('../Login/fragen.csv')
             .then(response => response.text())
             .then(data => {
                 // Trenne die CSV-Zeilen und verarbeite jede Zeile separat.
@@ -88,21 +86,26 @@
 
 
         function checkAnswer(selectedAnswer) {
-            console.log(selectedAnswer)
-            // Annahme: Du hast eine Variable namens csvUrl, die den Pfad zur CSV-Datei enthält.
-            var csvUrl = '../Login/fragen.csv';
+            // Annahme: Die Frage ist im HTML in einem Element mit der Klasse 'question'.
+            const currentQuestion = document.querySelector('.question').textContent;
+
+            // Annahme: Die Antwort-Optionen sind im HTML in Elementen mit der Klasse 'answer-box'.
+            const answerElements = document.querySelectorAll('.answer-box');
 
             // Fetch-API verwenden, um die CSV-Datei zu laden
-            fetch(csvUrl)
+            fetch('../Login/fragen.csv')
                 .then(response => response.text())
                 .then(csvData => {
-                    // CSV-Daten in ein Array umwandeln
-                    var csvArray = csvData.split(';');
+                    // Trenne die CSV-Zeilen und verarbeite jede Zeile separat.
+                    const rows = csvData.split('\n');
 
-                    // Den letzten Wert der CSV extrahieren und in eine Zahl konvertieren
-                    var correctAnswer = parseInt(csvArray[csvArray.length - 1]);
+                    // Finde die Zeile mit der aktuellen Frage.
+                    const currentQuestionRow = rows.find(row => row.startsWith(currentQuestion));
 
-                    // Jetzt vergleiche die ausgewählte Antwort mit der richtigen Antwort
+                    // Extrahiere die korrekte Antwort aus der CSV.
+                    const correctAnswer = parseInt(currentQuestionRow.split(';').pop());
+
+                    // Jetzt vergleiche die ausgewählte Antwort mit der richtigen Antwort.
                     if (selectedAnswer === correctAnswer) {
                         console.log("Richtig!");
                     } else {
@@ -111,13 +114,64 @@
                 })
                 .catch(error => console.error('Fehler beim Laden der CSV-Datei:', error));
         }
-        function updateQuestionCounter() {
-            const questionCounterElement = document.getElementById("questionCounter");
-            const totalQuestionsElement = document.getElementById("totalQuestions");
-            questionCounterElement.textContent = currentQuestionIndex + 1; // Index ist 0-basiert, wir wollen den Frage-Count 1-basiert anzeigen
-            totalQuestionsElement.textContent = totalQuestions;
+
+        function loadNextQuestion() {
+            // Increment current question index
+            currentQuestionIndex++;
+
+            // Fetch-API verwenden, um die CSV-Datei zu laden
+            fetch('../Login/fragen.csv')
+                .then(response => response.text())
+                .then(csvData => {
+                    // Trenne die CSV-Zeilen und verarbeite jede Zeile separat.
+                    const rows = csvData.split('\n');
+                    const currentQuestionRow = rows[currentQuestionIndex].split(';');
+
+                    // Überprüfe, ob es eine nächste Frage gibt
+                    if (currentQuestionRow.length > 1) {
+
+                        // Setze die Frage im HTML
+                        document.querySelector('.question').textContent = currentQuestionRow[0];
+
+                        // Setze die Antworten im HTML
+                        const answerElements = document.querySelectorAll('.answer');
+                        for (let i = 1; i < currentQuestionRow.length; i++) {
+                            if (answerElements[i - 1]) {
+                                answerElements[i - 1].textContent = currentQuestionRow[i];
+                            }
+                        }
+                        totalQuestions = rows.length;
+
+                        // Aktualisiere den Fragezähler
+                        updateQuestionCounter();
+                    } else {
+                        // Keine weiteren Fragen vorhanden, hier kannst du die Endbildschirm-Logik implementieren
+                        alert("Spiel beendet!");
+                    }
+                })
+                .catch(error => console.error('Fehler beim Laden der CSV-Datei:', error));
         }
 
+
+        function updateQuestionCounter() {
+            // Annahme: Der Pfad zur CSV-Datei.
+            const csvUrl = '../Login/fragen.csv';
+
+            // Fetch-API verwenden, um die CSV-Datei zu laden
+            fetch(csvUrl)
+                .then(response => response.text())
+                .then(csvData => {
+                    // Trenne die CSV-Zeilen und zähle die Anzahl der Fragen.
+                    const questionCount = csvData.split('\n').length;
+
+                    // Annahme: Der Counter-Text wird in einem Element mit der Klasse 'question-counter' angezeigt.
+                    const counterElement = document.querySelector('.questionCounter');
+
+                    // Aktualisiere den Counter-Text.
+                    counterElement.textContent = `${currentQuestionIndex + 1}/${totalQuestions} Fragen`;
+                })
+                .catch(error => console.error('Fehler beim Laden der CSV-Datei:', error));
+        }
     </script>
 
 </body>

@@ -40,17 +40,22 @@
                 $platz = 1;
 
                 foreach ($data as $row) {
-                    echo "<tr>";
-                    echo "<td>{$platz}</td>";
-                    echo "<td>{$row[1]}</td>";
-                    echo "<td>{$row[2]}</td>";
-                    echo "</tr>";
+                    $percentage = floatval($row[2]);
 
-                    $counter++;
-                    $platz++;
+                    // Prüfe, ob die Prozentzahl größer als 80 ist
+                    if ($percentage > 80) {
+                        echo "<tr>";
+                        echo "<td>{$platz}</td>";
+                        echo "<td>{$row[1]}</td>";
+                        echo "<td>{$row[2]}</td>";
+                        echo "</tr>";
 
-                    if ($counter >= 15) {
-                        break;
+                        $counter++;
+                        $platz++;
+
+                        if ($counter >= 15) {
+                            break;
+                        }
                     }
                 }
 
@@ -60,13 +65,14 @@
                 echo "Die Datei konnte nicht geöffnet werden.";
             }
             ?>
+
         </div>
         <div class="button">
             <a href="./play/index.php"><button>Spielen</button></a>
             <a href="./Login/login.php"><button>Admin Login</button></a>
         </div>
     </main>
-    
+
 </body>
 
 </html>
