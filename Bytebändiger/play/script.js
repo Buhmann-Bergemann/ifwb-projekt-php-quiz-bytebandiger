@@ -1,10 +1,14 @@
 let timerElement = document.querySelector(".timer");
-let timeLeft = 1500;
+let timeLeft = 15;
 let timerInterval;
 let selectedAnswer;
 let currentQuestionIndex = 0; // Index der aktuellen Frage
 let correctAnswersCount = 0;
-let totalQuestions = 0;
+let totalQuestions = 1;
+let playerData = [];
+let quizData;
+
+
 
 function startTimer() {
     timerInterval = setInterval(updateTimer, 1000);
@@ -16,15 +20,18 @@ function updateTimer() {
 
     if (timeLeft === 0) {
         clearInterval(timerInterval);
-        alert("Zeit abgelaufen!");
+        loadNextQuestion();
+
         // Hier kannst du die Logik für die abgelaufene Zeit implementieren
     }
 }
+function resetTimer() {
+    clearInterval(timerInterval); // Stoppe den aktuellen Timer
+    timeLeft = 15; // Setze die Zeit zurück
+    startTimer(); // Starte den Timer erneut
+}
 startTimer();
 updateQuestionCounter();
-
-
-
 
 fetch('../csv/fragen.csv')
     .then(response => response.text())
@@ -74,24 +81,29 @@ function checkAnswer(selectedAnswer) {
             } else {
                 console.log("Falsch!");
             }
+            loadNextQuestion();
+            console.log("currentQuestionIndex erhöht, ist nun " + currentQuestionIndex);
+
         })
         .catch(error => console.error('Fehler beim Laden der CSV-Datei:', error));
 }
 
 function loadNextQuestion() {
-    // Increment current question index
     currentQuestionIndex++;
-
-    // Fetch-API verwenden, um die CSV-Datei zu laden
-    fetch('../csv/fragen.csv')
-        .then(response => response.text())
-        .then(csvData => {
-            // Trenne die CSV-Zeilen und verarbeite jede Zeile separat.
-            const rows = csvData.split('\n');
-            const currentQuestionRow = rows[currentQuestionIndex].split(';');
-
-            // Überprüfe, ob es eine nächste Frage gibt
-            if (currentQuestionRow.length > 1) {
+    console.log("----------------");
+    console.log(currentQuestionIndex + " = Currentquestionindex");
+    console.log(totalQuestions + "= Totalquestions");
+    console.log(correctAnswersCount + "=Korrektasnwer");
+    // Überprüfe ob es noch eine weitere Frage gibt
+    if (currentQuestionIndex < totalQuestions) {
+        // Spiel läuft weiter
+        // Fetch-API verwenden, um die CSV-Datei zu laden
+        fetch('../csv/fragen.csv')
+            .then(response => response.text())
+            .then(csvData => {
+                // Trenne die CSV-Zeilen und verarbeite jede Zeile separat.
+                const rows = csvData.split('\n');
+                const currentQuestionRow = rows[currentQuestionIndex].split(';');
 
                 // Setze die Frage im HTML
                 document.querySelector('.question').textContent = currentQuestionRow[0];
@@ -103,54 +115,26 @@ function loadNextQuestion() {
                         answerElements[i - 1].textContent = currentQuestionRow[i];
                     }
                 }
-                totalQuestions = rows.length;
 
                 // Aktualisiere den Fragezähler
+                resetTimer();
                 updateQuestionCounter();
-                if (currentQuestionIndex === totalQuestions - 1) {
-                    // Alle Fragen wurden beantwortet
-                    const correctPercentage = (correctAnswersCount / totalQuestions) * 100;
-                    if (correctPercentage > 80) {
-                        const playerName = prompt("Herzlichen Glückwunsch! Du hast mehr als 80% richtig beantwortet. Bitte gib deinen Namen ein:");
-                        // Formatieren des Eintrags für die CSV-Datei
-                        const csvEntry = `${playerData.length + 1};${playerName};${correctPercentage.toFixed(2)}%`;
 
-                        // Füge den Eintrag zur CSV-Datei hinzu
-                        fetch('../csv/bestenliste.csv', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'text/plain',
-                                },
-                                body: csvEntry,
-                            })
-                            .then(response => response.text())
-                            .then(data => {
-                                console.log('Eintrag wurde erfolgreich hinzugefügt:', data);
-                                playerData.push({
-                                    name: playerName,
-                                    percentage: correctPercentage
-                                });
-                                alert(`Danke, ${playerName}! Spiel beendet. Du hast ${correctPercentage}% der Fragen richtig beantwortet.`);
-                            })
-                            .catch(error => console.error('Fehler beim Hinzufügen des Eintrags:', error));
+            })
+            .catch(error => console.error('Fehler beim Laden der CSV-Datei:', error));
+    } else {
+        const correctPercentage = (correctAnswersCount / totalQuestions) * 100;
 
-
-                    } else {
-                        alert("Spiel beendet! Leider hast du weniger als 80% richtig beantwortet.");
-                    }
-                }
-
-
-            } else {
-                // Keine weiteren Fragen vorhanden, hier kannst du die Endbildschirm-Logik implementieren
-                alert("Spiel beendet!");
-            }
-        })
-
-
-
-
-        .catch(error => console.error('Fehler beim Laden der CSV-Datei:', error));
+        if (correctPercentage >= 80) {
+         
+        endGame();   
+        }
+        else{
+            alert('Sie haben leider eine zu gerine Prozentzahl erreicht. Das Spiel wird nun beendet')
+            location.replace('../index.php');
+        }
+        
+    }
 }
 
 
@@ -163,7 +147,7 @@ function updateQuestionCounter() {
         .then(response => response.text())
         .then(csvData => {
             // Trenne die CSV-Zeilen und zähle die Anzahl der Fragen.
-            const questionCount = csvData.split('\n').length;
+            totalQuestions = csvData.split('\n').length;
 
             // Annahme: Der Counter-Text wird in einem Element mit der Klasse 'question-counter' angezeigt.
             const counterElement = document.querySelector('.questionCounter');
@@ -172,4 +156,46 @@ function updateQuestionCounter() {
             counterElement.textContent = `${currentQuestionIndex + 1}/${totalQuestions} Fragen`;
         })
         .catch(error => console.error('Fehler beim Laden der CSV-Datei:', error));
+}
+
+function appendToBestenliste(playerData) {
+    // File System API-Code hier...
+
+    // Hier ein einfaches Beispiel (Achtung: Funktioniert nicht im Browser)
+    const fs = require('fs');
+
+    // Dateipfad zur Bestenliste
+    const filePath = '../csv/bestenliste.csv';
+
+    // Spielerdaten in das CSV-Format umwandeln
+    const csvData = `${playerData[0]};${playerData[1]}\n`;
+
+    // Datei öffnen oder erstellen und Spielerdaten hinzufügen
+    fs.appendFileSync(filePath, csvData);
+
+    console.log('Daten erfolgreich in die Bestenliste eingetragen.');
+}
+
+
+
+
+function endGame() {
+    playerData[0] = prompt('Gratulation Sie haben das Spiel bestanden und werden in die Bestenliste eingetragen. Bitte geben Sie ihren Namne an!')
+    playerData[1]= (correctAnswersCount / totalQuestions) * 100;
+    appendToBestenliste(playerData);
+
+    
+    clearInterval(timerInterval);
+    // Verstecke Frage, Antwortmöglichkeiten und Timer
+    document.querySelector('.question').style.display = 'none';
+    document.querySelectorAll('.answer-box').forEach(answerBox => answerBox.style.display = 'none');
+    document.querySelector('.timer').style.display = 'none';
+
+    // Berechne die Endwertung
+
+    // Zeige Benutzerinformationen an
+    const resultContainer = document.createElement('div');
+    resultContainer.classList.add('result-container');
+    resultContainer.innerHTML = `<p>${playerData} Herzlichen glückwunsch, du hast ${playerData[1].toFixed(2)}% der Fragen richtig beantwortet. Wenn Sie zu den besten 15 Gehören werden Sie nun in die Bestenlist eingetragen!</p>`;
+    document.querySelector('.quiz-container').appendChild(resultContainer);
 }

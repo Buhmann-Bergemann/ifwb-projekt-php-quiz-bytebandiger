@@ -33,7 +33,7 @@
 
                 echo "<h2 class='headline'>Rangliste</h2>";
                 echo "<table>";
-                echo "<tr><th style='padding-right: 30px;'>Platz</th><th>Punkte</th><th>Prozente erreicht</th></tr>";
+                echo "<tr><th style='text-allign:left; padding-left:20px;'>Platz</th><th style='text-allign:center;'>Punkte</th><th>Prozente erreicht</th></tr>";
 
                 $counter = 0;
                 $platz = 1;
