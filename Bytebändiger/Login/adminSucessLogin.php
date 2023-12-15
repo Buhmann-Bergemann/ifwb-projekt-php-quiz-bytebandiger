@@ -41,10 +41,9 @@ if (!$success) {
 </head>
 
 <body>
-
     <div class="wrapper">
-
         <h1 class="">Admin Dashboard</h1>
+        <a href="../index.php" class="btn2">Zurück zur Startseite</a>
 
         <h2 class="">Neue Fragen erstellen</h2>
 
@@ -55,18 +54,14 @@ if (!$success) {
             <input name='newAnswer2' class='input-box' placeholder='Antwort 2' required>
             <input name='newAnswer3' class='input-box' placeholder='Antwort 3' required>
             <input name='newAnswer4' class='input-box' placeholder='Antwort 4' required>
-            <input name='newAnswer5' class='input-box' placeholder='Richtige antwort (Zahl)' required>
+            <input name='newAnswer5' class='input-box' placeholder='Richtige antwort (Zahl 1-4)' required>
             <button type='submit' class='btn' name='add'>Fragen Hinzufügen</button>
-
         </form>
         <h2 class="">Bestenliste Zurücksetzen</h2>
+
         <form method='post' id="resetScoreboard">
-
             <button type='submit' class='btn' name='resetScoreboard'>Zurücksetzen</button>
-
         </form>
-
-
     </div>
     <br>
     <div class='wrapper'>
@@ -93,7 +88,6 @@ if (!$success) {
             echo "</form>";
         }
         fclose($f);
-
         ?>
     </div>
 

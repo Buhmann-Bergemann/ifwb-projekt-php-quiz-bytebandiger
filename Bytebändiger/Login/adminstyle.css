@@ -13,7 +13,7 @@ body {
     background-position: center;
 }
 
-
+/* Die Wrapper klasse ist dafür verantwortlich das wir einen Transparenten Hintergrund haben */
 .wrapper {
     background: transparent;
     color: #fff;
@@ -29,8 +29,6 @@ body {
     text-align: center;
     color: black;
 }
-
-
 
 .input-box {
 
@@ -60,4 +58,65 @@ input::placeholder {
     color: #333;
     font-weight: 600;
     margin-bottom: 10px;
+}
+
+.btn2 {
+    text-decoration: none;
+    padding: 1.5px;
+    color: rgb(255, 255, 255);
+}
+
+@media (max-width: 1620px) {
+    .wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+        backdrop-filter: blur(15px);
+    }
+
+    .wrapper h1 {
+        color: white;
+    }
+
+    body {
+        background-image: url('../img/loop.jpg');
+        background-repeat: repeat;
+        background-size: contain;
+    }
+
+    .input-box {
+        width: 135%;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+
+    .btn2 {
+        width: 50%;
+        text-align: center;
+        background-image: url('../img/stars.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        color: white;
+        backdrop-filter: blur(20px);
+        border: none;
+    }
+
+    .wrapper .btn {
+        width: 100%;
+        background-image: url('../img/stars.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        color: white;
+        backdrop-filter: blur(20px);
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+
 }

@@ -4,7 +4,6 @@ if (isset($_POST['delete'])) {
     deleteRow($_POST['questionr']);
 }
 
-
 if (isset($_POST['edit'])) {
     // Wenn der "Bearbeiten"-Button gedrückt wurde
     // Lese die Daten aus dem Formular
@@ -18,7 +17,6 @@ if (isset($_POST['edit'])) {
     // Code zum Bearbeiten der Zeile
     editRow($questionr, $answer1, $answer2, $answer3, $answer4, $answer5);
 }
-
 
 function deleteRow($questionr)
 {
@@ -37,7 +35,6 @@ function deleteRow($questionr)
 
     file_put_contents("../csv/fragen.csv", implode("\n", $lines));
 }
-
 
 function editRow($questionr, $answer1, $answer2, $answer3, $answer4, $answer5)
 {
@@ -58,7 +55,6 @@ function editRow($questionr, $answer1, $answer2, $answer3, $answer4, $answer5)
     file_put_contents("../csv/fragen.csv", implode("\n", $lines));
 }
 
-/* BUGG BERGE ABI FRAGEN NACHDEM MAN WAS LÖSCHT KEINE NEW LINE*/
 if (isset($_POST['add'])) {
     $newQuestion = $_POST['newQuestionr'];
     $newAnswer1 = $_POST['newAnswer1'];

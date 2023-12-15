@@ -1,12 +1,25 @@
 <?php
 session_start();
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $_SESSION['username'] = $_POST['username'];
-    $_SESSION['password'] = $_POST['password'];
-    header("Location:./adminSucessLogin.php");
+
+function sanitizeInput($input)
+{
+    // Diese Funktion entfernt HTML- und PHP-Tags sowie Steuerzeichen aus dem Eingabestring
+    return htmlspecialchars(strip_tags(trim($input)));
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Benutzereingaben bereinigen
+    $username = sanitizeInput($_POST['username']);
+    $password = sanitizeInput($_POST['password']);
 
+    // Benutzereingaben in der Session speichern
+    $_SESSION['username'] = $username;
+    $_SESSION['password'] = $password;
+
+    // Weiterleitung nach erfolgreicher Anmeldung
+    header("Location:./adminSucessLogin.php");
+    exit(); // sicherstellen, dass der Code nach der Weiterleitung nicht mehr ausgeführt wird
+}
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -34,9 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <i class='bx bx-lock-alt'></i>
             </div>
             <button class="btn" type="submit">Anmelden</button>
-
-
-
         </form>
     </div>
 </body>
