@@ -1,7 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 session_start();
 
 // Check if the form is submitted
@@ -20,10 +17,8 @@ while (($line = fgets($handle)) !== FALSE) {
 }
 
 if (!$success) {
-    echo "Login ungültig";
-    echo $_SESSION['username'];
 
-    echo $_SESSION['password'];
+    header("Location:../index.php");
     exit;
 }
 
