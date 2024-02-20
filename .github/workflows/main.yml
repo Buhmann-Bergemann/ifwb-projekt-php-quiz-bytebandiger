@@ -1,0 +1,11 @@
+name: Beispiel-Workflow
+
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Führe ein Einzeilen-Skript aus
+      run: echo Hallo, Welt!
