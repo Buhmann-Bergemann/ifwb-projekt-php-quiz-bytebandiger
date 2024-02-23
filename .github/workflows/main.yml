@@ -9,3 +9,15 @@ jobs:
     - uses: actions/checkout@v2
     - name: Führe ein Einzeilen-Skript aus
       run: echo Hallo, Welt!
+    - name: Kommentar hinzufügen
+      uses: actions/github-script@v5
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          github.rest.pulls.createReview({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: context.issue.number,
+            event: 'COMMENT',
+            body: 'Hello World!'
+          })
